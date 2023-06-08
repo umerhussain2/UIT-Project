@@ -1,0 +1,162 @@
+/* Header */
+.Header-logo {
+  width: 3%;
+  border-radius: 3px;
+  margin: 5px;
+}
+
+@media screen and (max-width: 992px) {
+  .Header-logo {
+    width: 4%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Header-logo {
+    width: 5%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .Header-logo {
+    width: 8%;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .Header-logo {
+    width: 15%;
+  }
+}
+
+/* ------------------------------------------ */
+
+/* Products */
+
+.products-heading {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  border-radius: 10px;
+  font-size: 50px;
+  padding: 5px;
+  margin-bottom: 30px;
+}
+
+.Card {
+  border: 1px solid #7532f9;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0d0d0d;
+}
+
+.cardDetail {
+  font-size: 15px;
+  color: #0d0d0d;
+}
+
+.cardPrice {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* ------------------------------ */
+
+/* Footer */
+
+.footer {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  padding: 10px;
+}
+
+/* ------------------------------- */
+
+/* Services */
+
+.services {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  padding: 15px;
+  margin: 10px;
+  color: #7532f9;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px gray;
+}
+
+/* ----------------------------------- */
+
+.custom-bg-login {
+  background-image: linear-gradient(150deg, #7532f9, #6fadff);
+  color: #ffffff;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+.custom-bg-login h1 {
+  font-weight: 200;
+}
+
+.custom-butn {
+  background-image: linear-gradient(150deg, #7532f9, #6fadff);
+  background-image: linear-gradient(150deg, #7532f9, #6fadff);
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  border-radius: 25px !important;
+}
+
+:hover.custom-butn {
+  color: #ffffff;
+}
+
+.custom-heading {
+  color: #ffffff;
+  background-image: linear-gradient(150deg, #7532f9, #6fadff);
+  border-radius: 5px;
+  font-weight: 200;
+}
+
+.custom-text {
+  color: #0d0d0d;
+  font-size: 20px;
+}
+
+:hover.img-hover {
+  border-radius: 5px;
+  transition: 300ms;
+  transform: scale(1.1);
+  z-index: 2;
+  box-shadow: 0px 3px 10px gray;
+}
+
+.cart-items-counter {
+  font-size: 15px;
+  margin: 1px;
+  font-weight: bold;
+}
+
+.navColor {
+  background-color: #f8f7fa !important;
+}
+.nav-link {
+  color: #0d0d0d !important;
+  font-size: 18px;
+}
+
+.active {
+  color: #7532f9 !important;
+}
+
+:hover.nav-link {
+  color: #7532f9 !important;
+}
+
+.OLBB {
+  border-bottom: 1px solid #7532f9;
+}
