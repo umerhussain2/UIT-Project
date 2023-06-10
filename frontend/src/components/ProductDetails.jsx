@@ -9,7 +9,7 @@ const ProductDetails = () => {
   const [singleProduct, setSingleProduct] = useState({});
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("http://localhost:4000/api/");
+      const res = await axios.get("http://localhost:4000/api/products");
       const data = res.data.module;
       setAllProducts(data);
     };
@@ -24,7 +24,7 @@ const ProductDetails = () => {
   useEffect(() => {
     if (product === undefined) {
       // console.log("if: ", product);
-      console.log("if: ", STATUS.loding);
+      // console.log("if: ", STATUS.loding);
     } else {
       setSingleProduct(product);
       // console.log("SP", singleProduct);

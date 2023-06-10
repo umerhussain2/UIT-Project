@@ -1,76 +1,88 @@
-import { useDispatch, useSelector } from "react-redux";
-import { orderDone } from "../../store/slice/ShippedSlice";
+import { useEffect, useState } from "react";
 import Footer from "../Footer";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const OrdersDetail = () => {
-  const shipped = useSelector((state) => state.shipped);
-  const dispatch = useDispatch();
+  const [shippedList, setShippedList] = useState([]);
 
-  const handleOrderDone = (itemId) => {
-    dispatch(orderDone(itemId));
+  useEffect(() => {
+    getAllShippedOrd();
+  }, []);
+
+  const getAllShippedOrd = async () => {
+    const res = await axios.get("http://localhost:4000/api/admin/shipped");
+    const data = res.data;
+    // console.log(data);
+    setShippedList(data);
+  };
+
+  const handleOrderDone = async (id) => {
+    // alert(id);
+    const done = await axios.delete(
+      `http://localhost:4000/api/admin/shipped/${id}`
+    );
+    toast.success("Order delivered", {
+      theme: "colored",
+      position: "bottom-left",
+    });
+    // console.log(done);
+    getAllShippedOrd();
   };
 
   return (
     <>
       <div className="container-fluid mt-5 pt-3">
         <h1>Shipped Orders</h1>
-        {shipped.length === 0 ? (
+        {shippedList.length === 0 ? (
           <div className="row">
             <div className="col-12 shadow rounded p-3 d-flex flex-column justify-content-center align-items-center">
-              <h4>No Orders Shipped</h4>
-              <p>Currently list is empty</p>
+              <h4>No Orders</h4>
+              <p>Shipped list is empty</p>
             </div>
           </div>
         ) : (
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>
-                  <h3 className="text-start">Customer Details</h3>
+                <th className="text-start">
+                  <h4>Customer Details</h4>
                 </th>
-                <th>
-                  <h3 className="text-start">Items and Price</h3>
+                <th className="text-start">
+                  <h4>Items and Price</h4>
                 </th>
-                <th>
-                  <h3 className="text-start">Done</h3>
+                <th className="text-center">
+                  <h4>Done</h4>
                 </th>
               </tr>
             </thead>
             <tbody>
-              {shipped.map((items) => (
-                <>
-                  <tr key={items.id}>
-                    <td>
-                      <h4 className="text-start">Name: {items.name}</h4>
-                      <h4 className="text-start">Contact: {items.mobileNum}</h4>
-                      <h4 className="text-start">City: {items.city}</h4>
-                      <h4 className="text-start">Address: {items.address}</h4>
-                    </td>
-                    <td>
-                      <h5 className="text-start">
-                        Items Quintity: {items.orderData.totalItems}
-                      </h5>
-                      <h5 className="text-start">
-                        Items Total Ammount: {items.orderData.itemsTotal}
-                      </h5>
-                      <h5 className="text-start">
-                        Shipping Charges: {items.orderData.shipping}
-                      </h5>
-                      <h5 className="text-start">Tax: {items.orderData.tax}</h5>
-                      <h5 className="text-start">
-                        Subtotal: {items.orderData.totalPayment}
-                      </h5>
-                    </td>
-                    <td>
+              {shippedList.map((items) => (
+                <tr key={items._id}>
+                  <td className="text-start">
+                    <p>Name: {items.name}</p>
+                    <p>Contact: {items.contact}</p>
+                    <p>City: {items.address}</p>
+                    <p>Address: {items.city}</p>
+                  </td>
+                  <td className="text-start">
+                    <p>Items Quintity: {items.totalItems}</p>
+                    <p>Items Total Ammount: {items.itemsTotal}</p>
+                    <p>Shipping Charges: {items.shipping}</p>
+                    <p>Tax: {items.tax}</p>
+                    <p>Subtotal: {items.totalPayment}</p>
+                  </td>
+                  <td className="text-center">
+                    <div className="p-4 mt-5 d-flex justify-content-center">
                       <button
-                        onClick={() => handleOrderDone(items.id)}
                         className="btn custom-butn"
+                        onClick={() => handleOrderDone(items.id)}
                       >
                         Order Delivered
                       </button>
-                    </td>
-                  </tr>
-                </>
+                    </div>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>

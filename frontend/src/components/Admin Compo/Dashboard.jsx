@@ -8,7 +8,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("http://localhost:4000/api/");
+      const res = await axios.get("http://localhost:4000/api/products");
       const data = res.data.module;
       // console.log(data);
       setList(data);
@@ -36,7 +36,7 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {list.map((product, index) => (
+              {list?.map((product, index) => (
                 <tr key={index} className="p-3">
                   <td className="text-center">
                     <img

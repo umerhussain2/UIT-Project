@@ -1,34 +1,65 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { deleteOrder } from "../../store/slice/OrdersSlice";
-import { addToShipped } from "../../store/slice/ShippedSlice";
 import Footer from "../Footer";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const OrdersList = () => {
-  const ordesList = useSelector((state) => state.orders);
-  const dispatch = useDispatch();
   const [orders, setOrders] = useState([]);
+  const [shipped, setShipped] = useState([]);
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      const res = await axios.get("http://localhost:4000/api/admin/orders");
-      const data = res.data;
-      // console.log(data);
-      setOrders(data);
-    };
     fetchOrders();
   }, []);
 
-  // console.log(orders);
-
-  const handleRemoveOrder = (productId) => {
-    dispatch(deleteOrder(productId));
+  const fetchOrders = async () => {
+    const res = await axios.get("http://localhost:4000/api/admin/orders");
+    const data = res.data;
+    // console.log("data: ", data);
+    setOrders(data);
   };
 
-  const handleAddToShipped = (items) => {
-    dispatch(addToShipped(items));
+  const handleRemoveOrder = async (id) => {
+    const deleteOrder = await axios.delete(
+      `http://localhost:4000/api/admin/orders/${id}`
+    );
+    toast.error("Order delete", {
+      theme: "colored",
+      position: "bottom-left",
+    });
+    // console.log(deleteOrder.data);
+    // alert(id);
+    fetchOrders();
+  };
+
+  const sendOrderData = async (id) => {
+    let a = orders.find((item) => item.id === id);
+    a.id = shipped.length + 1;
+    // console.log("a", a);
+
+    if (!shipped) {
+      // console.log("IFshipped", shipped);
+    } else {
+      setShipped([...shipped, a]);
+      // console.log("shipped", shipped);
+      // consofle.log(a.id);
+      const post = await axios.post("http://localhost:4000/api/admin/shipped", {
+        id: shipped.length + 1,
+        name: a.name,
+        contact: a.contact,
+        address: a.address,
+        city: a.city,
+        totalItems: a.totalItems,
+        itemsTotal: a.itemsTotal,
+        shipping: a.shipping,
+        tax: a.tax,
+        totalPayment: a.totalPayment,
+      });
+      toast.success("Send to shipped", {
+        theme: "colored",
+        position: "bottom-left",
+      });
+      // console.log("Post", post.data);
+    }
   };
 
   return (
@@ -57,15 +88,12 @@ const OrdersList = () => {
                   <h4>Items and Price</h4>
                 </th>
                 <th className="text-center">
-                  <h4>Cancle Order</h4>
-                </th>
-                <th className="text-center">
-                  <h4>Send Order</h4>
+                  <h4>Actions</h4>
                 </th>
               </tr>
             </thead>
             <tbody>
-              {orders.map((items) => (
+              {orders?.map((items) => (
                 <tr key={items._id}>
                   <td className="text-start">
                     <p>Name: {items.name}</p>
@@ -74,32 +102,30 @@ const OrdersList = () => {
                     <p>Address: {items.city}</p>
                   </td>
                   <td className="text-start">
-                    <p>Items Quintity: {items.orderData.totalItems}</p>
-                    <p>Items Total Ammount: {items.orderData.itemsTotal}</p>
-                    <p>Shipping Charges: {items.orderData.shipping}</p>
-                    <p>Tax: {items.orderData.tax}</p>
-                    <p>Subtotal: {items.orderData.totalPayment}</p>
+                    <p>Items Quintity: {items.totalItems}</p>
+                    <p>Items Total Ammount: {items.itemsTotal}</p>
+                    <p>Shipping Charges: {items.shipping}</p>
+                    <p>Tax: {items.tax}</p>
+                    <p>Subtotal: {items.totalPayment}</p>
                   </td>
                   <td className="text-center">
-                    <p className="p-4 mt-5">
+                    <div className="p-4 mt-5 d-flex justify-content-around">
                       <button
                         onClick={() => handleRemoveOrder(items.id)}
                         className="btn custom-butn"
                       >
                         Delete Order
                       </button>
-                    </p>
-                  </td>
-                  <td className="text-center">
-                    <p className="p-4 mt-5">
+
                       <button
-                        onClick={() => handleAddToShipped(items)}
+                        onClick={() => sendOrderData(items.id)}
                         className="btn custom-butn"
                       >
-                        Shipped Order
+                        Send to Shipped
                       </button>
-                    </p>
+                    </div>
                   </td>
+                  <td className="text-center"></td>
                 </tr>
               ))}
             </tbody>
