@@ -1,12 +1,10 @@
 // Import
 const express = require("express");
-const serverless = require("serverless-http");
 const cors = require("cors");
 const products = require("./products");
 const { MongoClient, ObjectId } = require("mongodb");
 const port = 4000;
 const app = express();
-const router = express.Router();
 
 // MiddleWare---------------------------------------------
 app.use(cors());
@@ -95,8 +93,6 @@ app.delete("/api/admin/shipped/:id", (req, res) => {
 // });
 
 // Server Cofig----------------------------
-app.use("/.netlify/functions/server", router);
-module.exports.handler = serverless(app);
 
 app.listen(port, () => {
   console.log("Listening on port: ", port);
