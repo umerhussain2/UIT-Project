@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { productsList } from "../Products";
 import { useEffect, useState } from "react";
 import { addToCart } from "../../store/slice/CartSlice";
 import { useDispatch } from "react-redux";

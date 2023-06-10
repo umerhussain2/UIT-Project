@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { removeToCart, getTotals } from "../../store/slice/CartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Footer from "../Footer";

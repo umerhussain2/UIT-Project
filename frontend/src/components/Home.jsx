@@ -10,8 +10,8 @@ const Home = () => {
         <Carousel />
         <Services />
         <MyProducts />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };
