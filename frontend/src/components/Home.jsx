@@ -3,10 +3,6 @@ import Footer from "./Footer";
 import MyProducts from "./Home Compo/MyProducts";
 import { CgMouse } from "react-icons/all";
 import { BsChevronDoubleDown } from "react-icons/all";
-import img1 from "../Images/pic1.jpg";
-import img2 from "../Images/pic2.jpeg";
-import img3 from "../Images/pic3.jpg";
-import img4 from "../Images/pic4.jpg";
 
 const Div = styled.div`
   height: 100vmin;
