@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import ProductDetails from "./components/ProductDetails";
 import Checkout from "./components/Public Compo/Checkout";
 import Error from "./components/Error";
-import Header from "./Header/Header";
+// import Header from "./Header/Header";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Dashboard from "./components/Admin Compo/Dashboard";
@@ -21,6 +21,7 @@ import { Provider } from "react-redux";
 
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "./components/Header/Nav/Navbar";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
         <Provider store={store}>
           <BrowserRouter>
             <ToastContainer />
-            <Header />
+            <Navbar />
+            {/* <Header /> */}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route

@@ -2,6 +2,23 @@ import { useEffect, useState } from "react";
 import Footer from "../Footer";
 import axios from "axios";
 import { toast } from "react-toastify";
+import styled from "styled-components";
+
+const H2 = styled.h2`
+  background-color: #ffffff;
+  color: #7532f9;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  width: 30vmax;
+  margin: 0 auto;
+  padding: 1vmax;
+  margin-bottom: 3vmax;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vmax;
+  font-weight: 300;
+`;
 
 const OrdersDetail = () => {
   const [shippedList, setShippedList] = useState([]);
@@ -32,17 +49,17 @@ const OrdersDetail = () => {
 
   return (
     <>
-      <div className="container-fluid mt-5 pt-3">
-        <h1>Shipped Orders</h1>
+      <H2>Shipped Orders</H2>
+      <div className="container mt-5 pt-5">
         {shippedList.length === 0 ? (
-          <div className="row">
+          <div className="row mb-5 pb-5">
             <div className="col-12 shadow rounded p-3 d-flex flex-column justify-content-center align-items-center">
               <h4>No Orders</h4>
               <p>Shipped list is empty</p>
             </div>
           </div>
         ) : (
-          <table className="table table-striped">
+          <table className="table">
             <thead>
               <tr>
                 <th className="text-start">

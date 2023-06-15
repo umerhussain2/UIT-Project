@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const products = require("./products");
 const { MongoClient, ObjectId } = require("mongodb");
-const port = 4000;
+const port = process.env.PORT || 4000;
 const app = express();
 
 // MiddleWare---------------------------------------------

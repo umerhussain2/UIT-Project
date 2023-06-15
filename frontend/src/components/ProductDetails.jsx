@@ -2,6 +2,33 @@ import { useParams } from "react-router-dom";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ReactStars from "react-rating-stars-component";
+import styled from "styled-components";
+
+const options = {
+  edit: false,
+  color: "rgba(20,20,20,0.1)",
+  activeColor: "tomato",
+  value: 2.5,
+  size: window.innerWidth < 600 ? 20 : 25,
+  isHalf: true,
+};
+
+const H2 = styled.h2`
+  background-color: #ffffff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  color: #7532f9;
+  width: 30vmax;
+  margin: 5px auto;
+  padding: 1vmax;
+  margin-bottom: 3vmax;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 4vmax;
+  font-weight: 400;
+`;
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -34,15 +61,15 @@ const ProductDetails = () => {
 
   return (
     <>
+      <H2>Product Detail</H2>
       <div className="container-fluid mt-5 pt-3">
-        <h1 className="p-3">Product Detail</h1>
         {product === undefined ? (
           <div className="container">
             <h1>{STATUS.loding}</h1>
           </div>
         ) : (
           <div className="container">
-            <table className="table table-striped">
+            <table className="table">
               <tbody>
                 <tr>
                   <td>
@@ -58,6 +85,9 @@ const ProductDetails = () => {
                       {singleProduct.detail} Lorem ipsum dolor sit amet
                       consectetur adipisicing elit. Iure, provident!
                     </p>
+                    <span>
+                      <ReactStars {...options} />
+                    </span>
                   </td>
                 </tr>
                 <tr>

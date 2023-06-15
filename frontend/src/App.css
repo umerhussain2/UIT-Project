@@ -1,51 +1,33 @@
-/* Header */
-.Header-logo {
-  width: 3%;
-  border-radius: 3px;
-  margin: 5px;
+* {
+  margin: 0;
+  scroll-behavior: smooth;
 }
 
-@media screen and (max-width: 992px) {
-  .Header-logo {
-    width: 4%;
-  }
+.banner {
+  background-image: url("./Images/pic3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
-
-@media screen and (max-width: 768px) {
-  .Header-logo {
-    width: 5%;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .Header-logo {
-    width: 8%;
-  }
-}
-
-@media screen and (max-width: 376px) {
-  .Header-logo {
-    width: 15%;
-  }
-}
-
-/* ------------------------------------------ */
 
 /* Products */
 
-.products-heading {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: start;
-  border-radius: 10px;
-  font-size: 50px;
-  padding: 5px;
-  margin-bottom: 30px;
-}
-
 .Card {
+  /* border: 1px solid #3027ae; */
+  /* border: 1px solid #635dc0; */
+  width: 100%;
+  border: none;
   border: 1px solid #7532f9;
 }
+
+.Card:hover {
+  box-shadow: 3px 3px 10px gray;
+  transition: 0.4s;
+}
+
+/* .card-body {
+  height: 260px !important;
+} */
 
 .cardTitle {
   font-size: 18px;
@@ -70,23 +52,9 @@
 .footer {
   background-color: #0d0d0d;
   color: #ffffff;
-  padding: 10px;
-}
-
-/* ------------------------------- */
-
-/* Services */
-
-.services {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row wrap;
-  padding: 15px;
-  margin: 10px;
-  color: #7532f9;
-  border-radius: 10px;
-  box-shadow: 0px 5px 5px gray;
+  width: 100%;
+  padding: 1vmax;
+  overflow-x: auto;
 }
 
 /* ----------------------------------- */
@@ -141,12 +109,13 @@
   font-weight: bold;
 }
 
-.navColor {
-  background-color: #f8f7fa !important;
-}
 .nav-link {
   color: #0d0d0d !important;
-  font-size: 18px;
+  font-size: 1.6vmax;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  width: 10vmax;
+  margin-bottom: 20px;
 }
 
 .active {
@@ -155,6 +124,7 @@
 
 :hover.nav-link {
   color: #7532f9 !important;
+  transition: 0.2;
 }
 
 .OLBB {

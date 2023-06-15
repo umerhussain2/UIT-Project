@@ -7,7 +7,7 @@ import { AiOutlineCopyrightCircle } from "react-icons/ai";
 const Footer = () => {
   return (
     <>
-      <div className="container-fluid mt-5 footer">
+      <div className="footer">
         <div className="row p-3 d-flex align-items-baseline">
           <div className="col-12 col-sm-12 col-md-6 d-flex justify-content-start align-items-baseline me-auto">
             <img src={logo} width="100" height="100" className="m-2 rounded" />

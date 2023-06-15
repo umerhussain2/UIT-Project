@@ -1,6 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/Context";
 import Footer from "./Footer";
+import styled from "styled-components";
+
+const H2 = styled.h2`
+  background-color: #ffffff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  width: 20vmax;
+  margin: 0 auto;
+  padding: 1vmax;
+  margin-bottom: 3vmax;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  color: #7532f9;
+  font-size: 3vmax;
+  font-weight: 400;
+`;
+
+const Div = styled.div`
+  border: 2px solid #7532f9;
+  border-radius: 10px;
+  width: 25vmax;
+  margin: 5vmax auto;
+  padding: 3vmax;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+`;
 
 const Profile = () => {
   const auth = useAuth();
@@ -12,30 +41,18 @@ const Profile = () => {
   };
   return (
     <>
-      <div className="container-fluid mt-5 pt-3">
-        <div className="row">
-          <div className="col-12 col-sm-12 p-5 mt-1 text-center custom-bg-login">
-            <h1>
-              Welcom <br /> {auth.user}
-            </h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="text-center col-12 col-sm-12 p-5 border">
-            <h1 className="text-center border rounded mb-3 p-3">
-              P R O F I L E
-            </h1>
-            <h5 className="mb-4 p-3 custom-text">{auth.user}</h5>
-            <button
-              type="button"
-              className="btn btn-lg custom-butn"
-              onClick={() => handleLogout()}
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </div>
+      <H2>P R O F I L E</H2>
+      <Div className="container mt-1">
+        <h1 className="mb-3 p-3 ms-auto me-auto">Welcom</h1>
+        <h5 className="mb-4 p-3 custom-text">{auth.user}</h5>
+        <button
+          type="button"
+          className="btn btn-lg custom-butn"
+          onClick={() => handleLogout()}
+        >
+          Logout
+        </button>
+      </Div>
       <Footer />
     </>
   );

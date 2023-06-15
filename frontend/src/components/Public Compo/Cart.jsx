@@ -10,6 +10,23 @@ import {
 } from "../../store/slice/CartSlice";
 import { useEffect } from "react";
 import Footer from "../Footer";
+import styled from "styled-components";
+
+const H2 = styled.h2`
+  background-color: #ffffff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  width: 10vmax;
+  margin: 0 auto;
+  padding: 1vmax;
+  margin-bottom: 3vmax;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  color: #7532f9;
+  font-size: 4vmax;
+  font-weight: 300;
+`;
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -37,8 +54,8 @@ const Cart = () => {
 
   return (
     <>
-      <div className="container-fluid mt-5 p-3">
-        <h2 className="p-2">Cart</h2>
+      <H2>Cart</H2>
+      <div className="container mt-5 p-3">
         {cart.cartItems.length === 0 ? (
           <div className="row p-3">
             <div className="col-12 p-2 d-flex align-items-center justify-content-center">

@@ -4,6 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "../Footer";
 import { toast } from "react-toastify";
 import axios from "axios";
+import styled from "styled-components";
+
+const H2 = styled.h2`
+  background-color: #ffffff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  width: 20vmax;
+  margin: 0 auto;
+  padding: 1vmax;
+  margin-bottom: 3vmax;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  color: #7532f9;
+  font-size: 4vmax;
+  font-weight: 300;
+`;
+
+const Div = styled.div`
+  border: 1px solid #7532f9;
+  border-radius: 10px;
+  padding: 5vmax;
+  color: #7532f9;
+`;
 
 const Checkout = () => {
   const [name, setName] = useState("");
@@ -81,8 +105,8 @@ const Checkout = () => {
 
   return (
     <>
-      <div className="container-fluid mt-5">
-        <h1 className="mt-5 p-3 mb-5">Checkout</h1>
+      <H2>Checkout</H2>
+      <div className="container mt-3">
         {cart.cartItems?.map((cartItem, index) => (
           <div
             key={index}
@@ -120,7 +144,7 @@ const Checkout = () => {
           <form onSubmit={handleFormOnSubmit}>
             <div className="col-12 col-sm-12 col-md-12 p-3 mb-5  me-auto">
               <div className="row">
-                <div className="container">
+                <Div className="container">
                   <h3 className="p-3 mb-3">
                     Fill the details otherwise your order will be canceled
                   </h3>
@@ -177,7 +201,7 @@ const Checkout = () => {
                       onChange={(e) => setCity(e.target.value)}
                     />
                   </div>
-                </div>
+                </Div>
               </div>
             </div>
             <div className="col-12 col-sm-12 col-md-12 shadow p-3 mb-5 ms-auto bg-body-tertiary rounded">
